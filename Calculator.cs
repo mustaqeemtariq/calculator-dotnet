@@ -8,15 +8,15 @@ class Calculator
         this.numberOne = num1;
         this.numberTwo = num2;
     }
-    public int add()
+    public int Add()
     {
         return this.numberOne + this.numberTwo;
     }
-    public int subtract()
+    public int Subtract()
     {
         return this.numberOne - this.numberTwo;
     }
-    public int multiply()
+    public int Multiply()
     {
         int result = 0;
         for (int i = 0; i < this.numberTwo; i++)
@@ -25,7 +25,7 @@ class Calculator
         }
         return result;
     }
-    public double divide()
+    public double Divide()
     {
         if (this.numberTwo == 0)
         {

@@ -1,55 +1,63 @@
 ﻿using System;
+
+enum MenuOption
+{
+    Add = 1,
+    Subtract = 2,
+    Multiply = 3,
+    Divide = 4
+}
 class Program
 {
     static void Main()
     {
-        Console.WriteLine("--------------------------\n\n Welcome to Calculator \n\n--------------------------\n");
+        ApplicationMessage.ShowWelcomeMessage();
         while (true)
         {
-            string option = GetMenuOption();
+            MenuOption option = GetMenuOption();
             int num1 = GetIntegerInput("Enter the first number: ");
             int num2 = GetIntegerInput("Enter the second number: ");
             Calculator calc = new Calculator(num1, num2);
             switch (option)
             {
-                case "1":
-                    Console.WriteLine("Your result: " + calc.add());
+                case MenuOption.Add:
+                    ApplicationMessage.ShowCustomMessage("Your result: " + calc.Add());
                     break;
-                case "2":
-                    Console.WriteLine("Your result: " + calc.subtract());
+                case MenuOption.Subtract:
+                    ApplicationMessage.ShowCustomMessage("Your result: " + calc.Subtract());
                     break;
-                case "3":
-                    Console.WriteLine("Your result: " + calc.multiply());
+                case MenuOption.Multiply:
+                    ApplicationMessage.ShowCustomMessage("Your result: " + calc.Multiply());
                     break;
-                case "4":
-                    Console.WriteLine("Your result: " + calc.divide());
+                case MenuOption.Divide:
+                    ApplicationMessage.ShowCustomMessage("Your result: " + calc.Divide());
                     break;
             }
-            Console.Write("Do you want to perform another calculation. Press No to exit program: ");
+            ApplicationMessage.ShowConfirmExitMessage();
             if (Console.ReadLine().Equals("No", StringComparison.OrdinalIgnoreCase))
             {
-                Console.WriteLine("Goodbye!");
+                ApplicationMessage.ShowExitMessage();
                 break;
             }
         }
     }
 
-    public static string GetMenuOption()
+    public static MenuOption GetMenuOption()
     {
         while (true)
         {
-            Console.WriteLine("Select one of the following operations\n1.Add\n2.Subtract\n3.Multiply\n4.Divide");
+            ApplicationMessage.ShowMenuOptionMessage();
             string input = Console.ReadLine();
             if (String.IsNullOrEmpty(input))
             {
-                Console.WriteLine("Input is required");
+                ApplicationMessage.ShowNullMessage();
                 continue;
             }
-            if (input == "1" || input == "2" || input == "3" || input == "4")
+            if (Enum.TryParse<MenuOption>(input, out MenuOption option) && Enum.IsDefined(typeof(MenuOption), option))
             {
-                return input;
+                return option;
             }
-            Console.WriteLine("Please enter a valid menu option.\n");
+            ApplicationMessage.ShowValidOptionMessage();
             continue;
 
         }
@@ -62,14 +70,14 @@ class Program
             string input = Console.ReadLine();
             if (String.IsNullOrEmpty(input))
             {
-                Console.WriteLine("Input is required");
+                ApplicationMessage.ShowNullMessage();
                 continue;
             }
 
             int result;
             if (!int.TryParse(input, out result))
             {
-                Console.WriteLine("Invalid input - must be a valid integer");
+                ApplicationMessage.ShowValidInputMessage();
                 continue;
             }
             return result;
