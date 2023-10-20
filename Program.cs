@@ -74,8 +74,7 @@ class Program
                 continue;
             }
 
-            int result;
-            if (!int.TryParse(input, out result))
+            if (!int.TryParse(input, out int result))
             {
                 ApplicationMessage.ShowValidInputMessage();
                 continue;
