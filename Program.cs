@@ -11,7 +11,7 @@ class Program
 {
     static void Main()
     {
-        ApplicationMessage.ShowWelcomeMessage();
+        Console.WriteLine(ApplicationMessage.welcomeMessage);
         while (true)
         {
             MenuOption option = GetMenuOption();
@@ -33,10 +33,10 @@ class Program
                     ApplicationMessage.ShowCustomMessage("Your result: " + calc.Divide());
                     break;
             }
-            ApplicationMessage.ShowConfirmExitMessage();
+            Console.WriteLine(ApplicationMessage.confirmExitMessage);
             if (Console.ReadLine().Equals("No", StringComparison.OrdinalIgnoreCase))
             {
-                ApplicationMessage.ShowExitMessage();
+                Console.WriteLine(ApplicationMessage.exitMessage);
                 break;
             }
         }
@@ -46,18 +46,18 @@ class Program
     {
         while (true)
         {
-            ApplicationMessage.ShowMenuOptionMessage();
+            Console.WriteLine(ApplicationMessage.menuOptionMessage);
             string input = Console.ReadLine();
             if (String.IsNullOrEmpty(input))
             {
-                ApplicationMessage.ShowNullMessage();
+                Console.WriteLine(ApplicationMessage.nullMessage);
                 continue;
             }
             if (Enum.TryParse<MenuOption>(input, out MenuOption option) && Enum.IsDefined(typeof(MenuOption), option))
             {
                 return option;
             }
-            ApplicationMessage.ShowValidOptionMessage();
+            Console.WriteLine(ApplicationMessage.validOptionMessage);
             continue;
 
         }
@@ -70,13 +70,13 @@ class Program
             string input = Console.ReadLine();
             if (String.IsNullOrEmpty(input))
             {
-                ApplicationMessage.ShowNullMessage();
+                Console.WriteLine(ApplicationMessage.nullMessage);
                 continue;
             }
 
             if (!int.TryParse(input, out int result))
             {
-                ApplicationMessage.ShowValidInputMessage();
+                Console.WriteLine(ApplicationMessage.validInputMessage);
                 continue;
             }
             return result;
