@@ -8,6 +8,8 @@ public static class ApplicationMessage
     public static readonly string validOptionMessage = "Please enter a valid menu option.\n";
     public static readonly string confirmExitMessage = "Do you want to perform another calculation. Press No to exit program: ";
 
+    public static readonly string inputFirstNumber = "Enter the first number: ";
+    public static readonly string inputSecondNumber = "Enter the second number: ";
     public static void ShowCustomMessage(string message)
     {
         Console.WriteLine(message);

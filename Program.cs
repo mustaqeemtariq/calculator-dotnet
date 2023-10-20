@@ -1,12 +1,5 @@
 ﻿using System;
 
-enum MenuOption
-{
-    Add = 1,
-    Subtract = 2,
-    Multiply = 3,
-    Divide = 4
-}
 class Program
 {
     static void Main()
@@ -15,8 +8,8 @@ class Program
         while (true)
         {
             MenuOption option = GetMenuOption();
-            int num1 = GetIntegerInput("Enter the first number: ");
-            int num2 = GetIntegerInput("Enter the second number: ");
+            int num1 = GetIntegerInput(ApplicationMessage.inputFirstNumber);
+            int num2 = GetIntegerInput(ApplicationMessage.inputSecondNumber);
             Calculator calc = new Calculator(num1, num2);
             switch (option)
             {
